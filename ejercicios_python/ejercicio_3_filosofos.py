@@ -68,7 +68,14 @@ def filosofo(id, rondas=3):
         #
         # TODO: Adquiere los tenedores adyacentes de forma segura, invoca comer(id)
         # y libera los tenedores:
-        pass
+        if id == NUM_FILOSOFOS - 1:
+            primero, segundo = tenedor_der, tenedor_izq
+        else:
+            primero, segundo = tenedor_izq, tenedor_der
+
+        with tenedores[primero]:
+            with tenedores[segundo]:
+                comer(id)
         # =========================================================================
         # FIN TODO
         # =========================================================================
@@ -93,3 +100,4 @@ if __name__ == "__main__":
         print(f" - Filósofo {i}: {c} veces comió.")
     print(" ¡Simulación completada sin Interbloqueo (Deadlock)!")
     print("=" * 60)
+    
